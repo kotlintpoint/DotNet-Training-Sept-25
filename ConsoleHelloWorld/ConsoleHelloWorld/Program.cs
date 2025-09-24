@@ -97,5 +97,38 @@ Console.WriteLine($"{name} Equals {user} : {name.Equals(user)}");
 //DayThree.CompareToDemo();
 //DayThree.WriteFiles();
 //DayThree.ReadFile();
-DayThree.StreamReaderWriter();
+//DayThree.StreamReaderWriter();
+
+try
+{
+    //((Object)null).ToString();
+    var num1 = 35;
+    var num2 = 5;
+    Console.WriteLine($"{num1 / num2}");
+    var num3 = int.Parse("100");
+
+    var person1 = new Person();
+    person1.Id = 10;
+    person1.Name = "Sachin";
+    Console.WriteLine($"Id : {person1.Id}");
+    Console.WriteLine($"Name : {person1.Name}");
+    Console.WriteLine($"Description : {person1.Description}");
+
+    var person2 = new Person(20, "Ajay", "No title", "No Description");
+    Console.WriteLine($"Id : {person2.Id}");
+    Console.WriteLine($"Name : {person2.Name}");
+    Console.WriteLine($"Description : {person2.Description}");
+
+}
+catch (Exception ex)
+{
+    Console.WriteLine($"Error : {ex.ToString()}");
+}
+finally {
+    // will run exception occur or not 
+    Console.WriteLine("Main End.");
+}
+
+
+
 
