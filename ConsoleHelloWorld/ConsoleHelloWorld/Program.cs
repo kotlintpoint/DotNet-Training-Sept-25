@@ -1,5 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using ConsoleHelloWorld;
+using ConsoleHelloWorld.InheritanceDemo;
 
 /*
 Console.WriteLine("Hello, World!");
@@ -99,35 +100,61 @@ Console.WriteLine($"{name} Equals {user} : {name.Equals(user)}");
 //DayThree.ReadFile();
 //DayThree.StreamReaderWriter();
 
-try
-{
-    //((Object)null).ToString();
-    var num1 = 35;
-    var num2 = 5;
-    Console.WriteLine($"{num1 / num2}");
-    var num3 = int.Parse("100");
+//try
+//{
+//    //((Object)null).ToString();
+//    var num1 = 35;
+//    var num2 = 5;
+//    Console.WriteLine($"{num1 / num2}");
+//    var num3 = int.Parse("100");
 
-    var person1 = new Person();
-    person1.Id = 10;
-    person1.Name = "Sachin";
-    Console.WriteLine($"Id : {person1.Id}");
-    Console.WriteLine($"Name : {person1.Name}");
-    Console.WriteLine($"Description : {person1.Description}");
+//    var person1 = new Person();
+//    person1.Id = 10;
+//    person1.Name = "Sachin";
+//    Console.WriteLine($"Id : {person1.Id}");
+//    Console.WriteLine($"Name : {person1.Name}");
+//    Console.WriteLine($"Description : {person1.Description}");
 
-    var person2 = new Person(20, "Ajay", "No title", "No Description");
-    Console.WriteLine($"Id : {person2.Id}");
-    Console.WriteLine($"Name : {person2.Name}");
-    Console.WriteLine($"Description : {person2.Description}");
+//    var person2 = new Person(20, "Ajay", "No title", "No Description");
+//    Console.WriteLine($"Id : {person2.Id}");
+//    Console.WriteLine($"Name : {person2.Name}");
+//    Console.WriteLine($"Description : {person2.Description}");
 
+//}
+//catch (Exception ex)
+//{
+//    Console.WriteLine($"Error : {ex.ToString()}");
+//}
+//finally {
+//    // will run exception occur or not 
+//    Console.WriteLine("Main End.");
+//}
+
+
+var bird1 = new Bird("Abcd", 5, 5000);
+bird1.Fly();
+
+Animal animal = new Animal();
+Animal animal1 = new Bird("Birdddd", 5, 5000);
+Animal animal2 = new Human("Humannnn", 5, 5000);
+
+Animal[] animals = { bird1, animal1, animal2 };
+
+foreach (var ani in animals) { 
+    Console.WriteLine($"{ani.getName()}---{ani.getWeight()}---{ani.getAge()}");
+    //animal.Fly();
+    if (ani is Bird)
+    {
+        Bird b1 = (Bird)ani;
+        b1.Fly();
+    }
+    else { 
+        Console.WriteLine("This Animal is not Bird");
+    }
 }
-catch (Exception ex)
-{
-    Console.WriteLine($"Error : {ex.ToString()}");
-}
-finally {
-    // will run exception occur or not 
-    Console.WriteLine("Main End.");
-}
+
+
+
 
 
 
