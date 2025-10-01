@@ -1,6 +1,9 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using ConsoleHelloWorld;
+using ConsoleHelloWorld.AbstractDemo;
 using ConsoleHelloWorld.InheritanceDemo;
+using ConsoleHelloWorld.InterfaceDemo;
+using ConsoleHelloWorld.VirtualDemo;
 
 /*
 Console.WriteLine("Hello, World!");
@@ -131,27 +134,55 @@ Console.WriteLine($"{name} Equals {user} : {name.Equals(user)}");
 //}
 
 
-var bird1 = new Bird("Abcd", 5, 5000);
-bird1.Fly();
+//var bird1 = new Bird("Abcd", 5, 5000);
+//bird1.Fly();
 
-Animal animal = new Animal();
-Animal animal1 = new Bird("Birdddd", 5, 5000);
-Animal animal2 = new Human("Humannnn", 5, 5000);
+//Animal animal = new Animal();
+//Animal animal1 = new Bird("Birdddd", 5, 5000);
+//Animal animal2 = new Human("Humannnn", 5, 5000);
 
-Animal[] animals = { bird1, animal1, animal2 };
+//Animal[] animals = { bird1, animal1, animal2 };
 
-foreach (var ani in animals) { 
-    Console.WriteLine($"{ani.getName()}---{ani.getWeight()}---{ani.getAge()}");
-    //animal.Fly();
-    if (ani is Bird)
-    {
-        Bird b1 = (Bird)ani;
-        b1.Fly();
-    }
-    else { 
-        Console.WriteLine("This Animal is not Bird");
-    }
+//foreach (var ani in animals) { 
+//    Console.WriteLine($"{ani.getName()}---{ani.getWeight()}---{ani.getAge()}");
+//    //animal.Fly();
+//    if (ani is Bird)
+//    {
+//        Bird b1 = (Bird)ani;
+//        b1.Fly();
+//    }
+//    else { 
+//        Console.WriteLine("This Animal is not Bird");
+//    }
+//}
+
+var normalTeacher = new Teacher();
+normalTeacher.Work();
+
+var goodTeacher = new GoodTeacher();
+goodTeacher.Work();
+
+var badTeacher = new BadTeacher();
+badTeacher.Work();
+
+Teacher[] teachers = [
+    normalTeacher, 
+    goodTeacher, 
+    badTeacher
+ ];
+Console.WriteLine("==================");
+foreach (var teacher in teachers) { 
+    teacher.Work();
 }
+
+//var personalities = new Personalities();
+
+var optimistics = new Optimistics();
+optimistics.PrintStatus();
+
+var punch = new Punch();
+Console.WriteLine($"Range ===> {punch.GetRange()}");
+Console.WriteLine($"Damage ===> {punch.GetDamage()}");
 
 
 
