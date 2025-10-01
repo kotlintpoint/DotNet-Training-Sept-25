@@ -6,8 +6,13 @@ using System.Threading.Tasks;
 
 namespace ConsoleHelloWorld.InterfaceDemo
 {
-    internal class Punch : IAttack
+    internal class Punch : IAttack, IWeapon
     {
+        public IAttack GetAttack()
+        {
+            return this; // Punch is child of IAttack
+        }
+
         public float GetDamage()
         {
             return 60;
