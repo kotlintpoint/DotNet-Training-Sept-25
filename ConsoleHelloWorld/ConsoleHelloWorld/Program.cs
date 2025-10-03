@@ -155,7 +155,7 @@ Console.WriteLine($"{name} Equals {user} : {name.Equals(user)}");
 //        Console.WriteLine("This Animal is not Bird");
 //    }
 //}
-
+/*
 var normalTeacher = new Teacher();
 normalTeacher.Work();
 
@@ -183,10 +183,103 @@ optimistics.PrintStatus();
 var punch = new Punch();
 Console.WriteLine($"Range ===> {punch.GetRange()}");
 Console.WriteLine($"Damage ===> {punch.GetDamage()}");
+*/
+
+// List Demo
+/*
+var list = new List<int> { 10, 20, 30};
+printList(list);
+
+list.Add(50);
+printList(list);
+
+list.Insert(3, 40);
+printList(list);
+
+list.Remove(10);
+printList(list);
+
+list.RemoveAt(2);
+printList(list);
+
+//list.Add(-10);
+var allPositive = list.All(x => x > 0);
+Console.WriteLine($"All positive : {allPositive}");
+
+list.Add(-10);
+var anyPositive = list.Any(x => x > 0);
+Console.WriteLine($"Any positive : {anyPositive}");
+
+var count = list.Count(x => x > 20);
+Console.WriteLine($"Count : {count}");
+
+Console.WriteLine($"Element At 1 : {list.ElementAt(1)}");
+
+Console.WriteLine($"Element At 10 : {list.ElementAtOrDefault(10)}");
+
+var marks = new List<int> { 20, 15, 24, 30, 28 };
+marks.Sort();
+printList(marks);
 
 
+void printList(List<int> list) {
+    
+    //foreach (var item in list)
+    //{
+    //    Console.Write($"{item}, ");
+    //}
+    //Console.WriteLine(); 
 
+    list.ForEach(x => Console.Write($"{x}, "));
 
+    Console.WriteLine();
+}
+*/
+// Jagged Array
 
+var data = new int[2][];
+data[0] = new int[2];
+data[1] = new int[4];
+
+Console.WriteLine($"Length : {data.Length}");
+Console.WriteLine($"Length of data[0] : {data[0].Length}");
+Console.WriteLine($"Length of data[1] : {data[1].Length}");
+
+var count = 1;
+for (var i = 0; i < data.Length; i++) {
+    for (var j = 0; j < data[i].Length; j++)
+    {
+        data[i][j] = count++;
+    }
+}
+
+for (var i = 0; i < data.Length; i++)
+{
+    for (var j = 0; j < data[i].Length; j++)
+    {
+        Console.Write($"{data[i][j]}   ");
+    }
+    Console.WriteLine();
+}
+
+var values = new int[2, 3];
+Console.WriteLine($"Length : {values.Length}");
+var num = 1;
+for (var i = 0; i < values.GetLength(0); i++)
+{
+    for (var j = 0; j < values.GetLength(1); j++)
+    {
+        values[i, j] = num++;
+    }
+}
+
+for (var i = 0; i < values.GetLength(0); i++)
+{
+    for (var j = 0; j < values.GetLength(1); j++)
+    {
+        Console.Write($"{values[i, j]}    ");
+    }
+    Console.WriteLine();
+}
 
 
