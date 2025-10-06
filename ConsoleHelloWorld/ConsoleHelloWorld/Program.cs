@@ -1,6 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using ConsoleHelloWorld;
 using ConsoleHelloWorld.AbstractDemo;
+using ConsoleHelloWorld.IndexerDemo;
 using ConsoleHelloWorld.InheritanceDemo;
 using ConsoleHelloWorld.InterfaceDemo;
 using ConsoleHelloWorld.VirtualDemo;
@@ -235,6 +236,8 @@ void printList(List<int> list) {
     Console.WriteLine();
 }
 */
+
+/*
 // Jagged Array
 
 var data = new int[2][];
@@ -281,5 +284,60 @@ for (var i = 0; i < values.GetLength(0); i++)
     }
     Console.WriteLine();
 }
+*/
 
+/*
+Dictionary<int, string> map = new Dictionary<int, string>();
+map.Add(1, "Welcome");
+map.Add(2, "Good Morning");
+map.Add(3, "How are you?");
+
+map.TryAdd(3, "Testtttt");
+
+Console.WriteLine(map[1]);
+Console.WriteLine(map[3]);
+//Console.WriteLine(map[5]);
+
+var isRemoved = map.Remove(1);
+//Console.WriteLine(isRemoved);
+if (isRemoved) {
+    Console.WriteLine("1 is removed.");
+}
+
+string value;
+map.TryGetValue(5,out value);
+Console.WriteLine($"Value for 5 is {value}");
+
+var element = map.ElementAt(0);
+Console.WriteLine($"{element.Key} ===> {element.Value}");
+Console.WriteLine("====for====");
+for (int i = 0; i < map.Count; i++)
+{
+    element = map.ElementAt(i);
+    Console.WriteLine($"{element.Key} ===> {element.Value}");
+}
+
+Console.WriteLine("===foreach=====");
+foreach (var item in map)
+{
+    Console.WriteLine($"{item.Key} ===> {item.Value}");
+}
+
+var maxByMap = map.MaxBy(item => item.Key > 2);
+Console.WriteLine($"{maxByMap.Key} ===> {maxByMap.Value}");
+*/
+
+// Indexer
+
+WeekDays week = new WeekDays();
+
+// Set values using indexer
+week[0] = Days.SUNDAY;
+week[1] = Days.MONDAY;
+week[2] = Days.TUESDAY;
+
+// Get values using indexer
+Console.WriteLine(week[0]); // Output: Sunday
+Console.WriteLine(week[1]); // Output: Monday
+Console.WriteLine(week[2]); // Output: Tuesday
 
