@@ -3,6 +3,7 @@ using ConsoleHelloWorld;
 using ConsoleHelloWorld.AbstractDemo;
 using ConsoleHelloWorld.IndexerDemo;
 using ConsoleHelloWorld.InheritanceDemo;
+using ConsoleHelloWorld.InOutRefDemo;
 using ConsoleHelloWorld.InterfaceDemo;
 using ConsoleHelloWorld.VirtualDemo;
 
@@ -326,7 +327,7 @@ foreach (var item in map)
 var maxByMap = map.MaxBy(item => item.Key > 2);
 Console.WriteLine($"{maxByMap.Key} ===> {maxByMap.Value}");
 */
-
+/*
 // Indexer
 
 WeekDays week = new WeekDays();
@@ -341,3 +342,44 @@ Console.WriteLine(week[0]); // Output: Sunday
 Console.WriteLine(week[1]); // Output: Monday
 Console.WriteLine(week[2]); // Output: Tuesday
 
+*/
+
+// In, Out, Ref Keywords
+
+var number = 5;
+
+Console.WriteLine($"number => {number}");   // 5
+
+InOutRef.changeVariableWithoutRef(number);
+Console.WriteLine($"number => {number}");   // 5
+
+InOutRef.changeVariableWithRef(ref number);
+Console.WriteLine($"number => {number}");   // 15
+
+InOutRef.changeVariableWithIn(in number);
+
+InOutRef.changeVariableWithOut(in number, out var squareNumber, out var qubeNumber);
+Console.WriteLine($"Square => {squareNumber}");
+Console.WriteLine($"Qube => {qubeNumber}");
+
+// Discard operator
+InOutRef.changeVariableWithOut(in number, out var square, out _);
+Console.WriteLine($"Square => {square}");
+
+// Null conditional operator
+InOutRef.TeacherWork(null);
+InOutRef.TeacherWork(new Teacher());
+
+int? aNumber = null;
+
+aNumber = 3;
+
+var numberString = aNumber switch
+{
+    0 => "Zero",
+    1 => "One",
+    2 => "Two",
+    3 => "Three",
+    _ => "?"
+};
+Console.WriteLine($"Number String : {numberString}");
