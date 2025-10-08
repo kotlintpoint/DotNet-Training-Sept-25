@@ -374,6 +374,7 @@ int? aNumber = null;
 
 aNumber = 3;
 
+// Pattern Matching 
 var numberString = aNumber switch
 {
     0 => "Zero",
