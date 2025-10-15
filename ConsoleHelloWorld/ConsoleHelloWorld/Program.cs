@@ -1,11 +1,17 @@
 ﻿// See https://aka.ms/new-console-template for more information
-using ConsoleHelloWorld;
+//using ConsoleHelloWorld;
 using ConsoleHelloWorld.AbstractDemo;
+using ConsoleHelloWorld.DelegateDemo;
 using ConsoleHelloWorld.IndexerDemo;
 using ConsoleHelloWorld.InheritanceDemo;
 using ConsoleHelloWorld.InOutRefDemo;
 using ConsoleHelloWorld.InterfaceDemo;
+using ConsoleHelloWorld.JsonDemo;
 using ConsoleHelloWorld.VirtualDemo;
+using Newtonsoft.Json;
+using System.Diagnostics;
+using System.Xml.Linq;
+using static System.Net.Mime.MediaTypeNames;
 
 /*
 Console.WriteLine("Hello, World!");
@@ -344,6 +350,7 @@ Console.WriteLine(week[2]); // Output: Tuesday
 
 */
 
+/*
 // In, Out, Ref Keywords
 
 var number = 5;
@@ -384,3 +391,87 @@ var numberString = aNumber switch
     _ => "?"
 };
 Console.WriteLine($"Number String : {numberString}");
+*/
+
+/*
+HelloDelegate MyDelegate = DelegateExample.Hello;
+
+MyDelegate();   
+
+MyDelegate += DelegateExample.HelloExample;
+
+MyDelegate();
+
+DelegateExample.CheckDelegateAsParameter(() => Console.WriteLine("Anonymous Function Delegate Parameter"));
+
+
+var name = "sachin";
+name = name.ToPascalCase();
+Console.WriteLine(name);
+*/
+/*
+var person = new Person();
+person.Id = 1;
+person.Name = "Sachin";
+person.Description = "Sachin is Good Boy.";
+person.Title = "This is Title";
+
+Console.WriteLine(person);
+// Serizlization => object to json
+var personJson = JsonConvert.SerializeObject(person, Formatting.Indented);
+
+Console.WriteLine(personJson);
+
+var personList = new List<Person> { 
+    person
+};
+
+var personListJson = JsonConvert.SerializeObject(personList, Formatting.Indented);
+
+Console.WriteLine(personListJson);
+
+
+// Deserialization => json to object
+
+var personObject = JsonConvert.DeserializeObject<Person>(personJson);
+Console.WriteLine($"{personObject.Id}, {personObject.Name}, {personObject.Title}, {personObject.Description}");
+
+var personListObject = JsonConvert.DeserializeObject<List<Person>>(personListJson);
+personListObject.ForEach((p) => Console.WriteLine(p.Name));
+*/
+
+while (true) {
+    Console.WriteLine("1. New Person");
+    Console.WriteLine("2. Read all Persons");
+    Console.WriteLine("3. Exit");
+
+    Console.WriteLine("Enter Choice : ");
+    int.TryParse(Console.ReadLine(), out var choice);
+    switch (choice) {
+        case 1:
+            var persons = Person.ReadPersonsFromFile();
+
+            Console.Write("Enter Id : ");
+            int.TryParse(Console.ReadLine(), out var id);
+            Console.Write("Enter Name : ");
+            var name = Console.ReadLine() ?? "";
+            Console.Write("Enter Title : ");
+            var title = Console.ReadLine() ?? "";
+            Console.Write("Enter Name : ");
+            var description = Console.ReadLine() ?? "";
+
+            var person = new Person(id, name, title, description);
+            persons.Add(person);
+            Person.WritePersonToFile(persons);
+            break;
+        case 2:
+            var personList = Person.ReadPersonsFromFile();
+            personList.ForEach((p) => Console.WriteLine(p.Name));
+            break;
+        case 3:
+            Environment.Exit(0);
+            break;
+    }
+}
+
+//Person.WritePersonToFile(personList);
