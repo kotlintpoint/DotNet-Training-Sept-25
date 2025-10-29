@@ -1,14 +1,22 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Tops\\Dot Net Core\\ConsoleHelloWorld\\",
+  "WorkspaceRootPath": "C:\\Users\\Tops\\Dot Net Core\\DotNet-Training-Sept-25\\ConsoleHelloWorld\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{0EB0C266-F7F3-4E57-810A-72A7ECF32502}|ConsoleHelloWorld\\ConsoleHelloWorld.csproj|c:\\users\\tops\\dot net core\\consolehelloworld\\consolehelloworld\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{0EB0C266-F7F3-4E57-810A-72A7ECF32502}|ConsoleHelloWorld\\ConsoleHelloWorld.csproj|c:\\users\\tops\\dot net core\\dotnet-training-sept-25\\consolehelloworld\\consolehelloworld\\jsondemo\\person.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0EB0C266-F7F3-4E57-810A-72A7ECF32502}|ConsoleHelloWorld\\ConsoleHelloWorld.csproj|solutionrelative:consolehelloworld\\jsondemo\\person.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0EB0C266-F7F3-4E57-810A-72A7ECF32502}|ConsoleHelloWorld\\ConsoleHelloWorld.csproj|c:\\users\\tops\\dot net core\\dotnet-training-sept-25\\consolehelloworld\\consolehelloworld\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0EB0C266-F7F3-4E57-810A-72A7ECF32502}|ConsoleHelloWorld\\ConsoleHelloWorld.csproj|solutionrelative:consolehelloworld\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0EB0C266-F7F3-4E57-810A-72A7ECF32502}|ConsoleHelloWorld\\ConsoleHelloWorld.csproj|c:\\users\\tops\\dot net core\\consolehelloworld\\consolehelloworld\\student.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0EB0C266-F7F3-4E57-810A-72A7ECF32502}|ConsoleHelloWorld\\ConsoleHelloWorld.csproj|solutionrelative:consolehelloworld\\student.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{0EB0C266-F7F3-4E57-810A-72A7ECF32502}|ConsoleHelloWorld\\ConsoleHelloWorld.csproj|c:\\users\\tops\\dot net core\\dotnet-training-sept-25\\consolehelloworld\\consolehelloworld\\person.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0EB0C266-F7F3-4E57-810A-72A7ECF32502}|ConsoleHelloWorld\\ConsoleHelloWorld.csproj|solutionrelative:consolehelloworld\\person.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0EB0C266-F7F3-4E57-810A-72A7ECF32502}|ConsoleHelloWorld\\ConsoleHelloWorld.csproj|c:\\users\\tops\\dot net core\\dotnet-training-sept-25\\consolehelloworld\\consolehelloworld\\daythree.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0EB0C266-F7F3-4E57-810A-72A7ECF32502}|ConsoleHelloWorld\\ConsoleHelloWorld.csproj|solutionrelative:consolehelloworld\\daythree.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,32 +26,58 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Student.cs",
-              "DocumentMoniker": "C:\\Users\\Tops\\Dot Net Core\\ConsoleHelloWorld\\ConsoleHelloWorld\\Student.cs",
-              "RelativeDocumentMoniker": "ConsoleHelloWorld\\Student.cs",
-              "ToolTip": "C:\\Users\\Tops\\Dot Net Core\\ConsoleHelloWorld\\ConsoleHelloWorld\\Student.cs",
-              "RelativeToolTip": "ConsoleHelloWorld\\Student.cs",
-              "ViewState": "AgIAACMAAAAAAAAAAAAIwC4AAAAJAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "Person.cs",
+              "DocumentMoniker": "C:\\Users\\Tops\\Dot Net Core\\DotNet-Training-Sept-25\\ConsoleHelloWorld\\ConsoleHelloWorld\\Person.cs",
+              "RelativeDocumentMoniker": "ConsoleHelloWorld\\Person.cs",
+              "ToolTip": "C:\\Users\\Tops\\Dot Net Core\\DotNet-Training-Sept-25\\ConsoleHelloWorld\\ConsoleHelloWorld\\Person.cs",
+              "RelativeToolTip": "ConsoleHelloWorld\\Person.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAowB8AAAALAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-17T02:56:39.628Z",
+              "WhenOpened": "2025-10-15T03:16:51.772Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "DayThree.cs",
+              "DocumentMoniker": "C:\\Users\\Tops\\Dot Net Core\\DotNet-Training-Sept-25\\ConsoleHelloWorld\\ConsoleHelloWorld\\DayThree.cs",
+              "RelativeDocumentMoniker": "ConsoleHelloWorld\\DayThree.cs",
+              "ToolTip": "C:\\Users\\Tops\\Dot Net Core\\DotNet-Training-Sept-25\\ConsoleHelloWorld\\ConsoleHelloWorld\\DayThree.cs",
+              "RelativeToolTip": "ConsoleHelloWorld\\DayThree.cs",
+              "ViewState": "AgIAADkAAAAAAAAAAAAowGMAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-15T03:14:11.759Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Tops\\Dot Net Core\\ConsoleHelloWorld\\ConsoleHelloWorld\\Program.cs",
-              "RelativeDocumentMoniker": "ConsoleHelloWorld\\Program.cs",
-              "ToolTip": "C:\\Users\\Tops\\Dot Net Core\\ConsoleHelloWorld\\ConsoleHelloWorld\\Program.cs",
-              "RelativeToolTip": "ConsoleHelloWorld\\Program.cs",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAAAB0AAAAGAAAAAAAAAA==",
+              "Title": "Person.cs",
+              "DocumentMoniker": "C:\\Users\\Tops\\Dot Net Core\\DotNet-Training-Sept-25\\ConsoleHelloWorld\\ConsoleHelloWorld\\JsonDemo\\Person.cs",
+              "RelativeDocumentMoniker": "ConsoleHelloWorld\\JsonDemo\\Person.cs",
+              "ToolTip": "C:\\Users\\Tops\\Dot Net Core\\DotNet-Training-Sept-25\\ConsoleHelloWorld\\ConsoleHelloWorld\\JsonDemo\\Person.cs",
+              "RelativeToolTip": "ConsoleHelloWorld\\JsonDemo\\Person.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAAwwCwAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-17T02:50:52.205Z",
+              "WhenOpened": "2025-10-15T03:12:47.909Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Tops\\Dot Net Core\\DotNet-Training-Sept-25\\ConsoleHelloWorld\\ConsoleHelloWorld\\Program.cs",
+              "RelativeDocumentMoniker": "ConsoleHelloWorld\\Program.cs",
+              "ToolTip": "C:\\Users\\Tops\\Dot Net Core\\DotNet-Training-Sept-25\\ConsoleHelloWorld\\ConsoleHelloWorld\\Program.cs",
+              "RelativeToolTip": "ConsoleHelloWorld\\Program.cs",
+              "ViewState": "AgIAAMYBAAAAAAAAAAAAANABAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-03T02:47:21.191Z",
               "EditorCaption": ""
             }
           ]
