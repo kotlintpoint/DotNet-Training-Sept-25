@@ -1,10 +1,15 @@
 using BulkyWeb.Data;
+using DI_Service_Lifetime;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<IScopedGuidService, ScopedGuidService>();
+builder.Services.AddTransient<ITransientGuidService, TransientGuidService>();
+builder.Services.AddSingleton<ISingletonGuidService, SingletonGuidService>();
+
 var connectionString =
     builder.Configuration.GetConnectionString("DefaultConnection")
         ?? throw new InvalidOperationException("Connection string"
