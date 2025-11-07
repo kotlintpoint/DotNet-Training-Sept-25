@@ -1,3 +1,4 @@
+using Bulky.DataAccess.Repository;
 using BulkyWeb.Data;
 using DI_Service_Lifetime;
 using Microsoft.EntityFrameworkCore;
@@ -9,6 +10,8 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IScopedGuidService, ScopedGuidService>();
 builder.Services.AddTransient<ITransientGuidService, TransientGuidService>();
 builder.Services.AddSingleton<ISingletonGuidService, SingletonGuidService>();
+//builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 var connectionString =
     builder.Configuration.GetConnectionString("DefaultConnection")
