@@ -30,7 +30,9 @@ namespace BulkyWeb.Data
                     ListPrice = 99,
                     Price = 90,
                     Price50 = 85,
-                    Price100 = 80
+                    Price100 = 80,
+                    CategoryId = 1,
+                    ImageUrl = ""
                 },
                 new Product
                 {
@@ -42,7 +44,9 @@ namespace BulkyWeb.Data
                     ListPrice = 120,
                     Price = 110,
                     Price50 = 100,
-                    Price100 = 95
+                    Price100 = 95,
+                    CategoryId = 2,
+                    ImageUrl = ""
                 },
                 new Product
                 {
@@ -54,7 +58,9 @@ namespace BulkyWeb.Data
                     ListPrice = 150,
                     Price = 140,
                     Price50 = 130,
-                    Price100 = 120
+                    Price100 = 120,
+                    CategoryId = 1,
+                    ImageUrl = ""
                 }
             );
         }

@@ -3,6 +3,7 @@ using BulkyWeb.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Bulky.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251114030533_CategoryProductForeignKey")]
+    partial class CategoryProductForeignKey
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -85,10 +88,6 @@ namespace Bulky.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ImageUrl")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<double>("ListPrice")
                         .HasColumnType("float");
 
@@ -119,7 +118,6 @@ namespace Bulky.DataAccess.Migrations
                             CategoryId = 1,
                             Description = "An introduction to C# programming language",
                             ISBN = "1111111111111",
-                            ImageUrl = "",
                             ListPrice = 99.0,
                             Price = 90.0,
                             Price100 = 80.0,
@@ -133,7 +131,6 @@ namespace Bulky.DataAccess.Migrations
                             CategoryId = 2,
                             Description = "Learn how to build web apps with ASP.NET Core.",
                             ISBN = "2222222222222",
-                            ImageUrl = "",
                             ListPrice = 120.0,
                             Price = 110.0,
                             Price100 = 95.0,
@@ -147,7 +144,6 @@ namespace Bulky.DataAccess.Migrations
                             CategoryId = 1,
                             Description = "Master data access with EF Core.",
                             ISBN = "3333333333333",
-                            ImageUrl = "",
                             ListPrice = 150.0,
                             Price = 140.0,
                             Price100 = 120.0,
