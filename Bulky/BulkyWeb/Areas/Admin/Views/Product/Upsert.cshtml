@@ -3,7 +3,16 @@
 <form method="post" enctype="multipart/form-data">
     <div class="border p-3 mt-4">
         <div class="row pb-2">
-            <h2 class="text-primary">Create Product</h2>
+            <h2 class="text-primary">
+                @if (Model.Product.Id == 0)
+                {
+                    <span>Create Product</span>
+                }
+                else
+                {
+                    <span>Update Product</span>
+                }
+            </h2>
             <hr />
         </div>
         <div asp-validation-summary="All"></div>
@@ -64,7 +73,16 @@
                 </div>
                 <div class="row">
                     <div class="col-6">
-                        <button type="submit" class="btn btn-primary">Create</button>
+                        <button type="submit" class="btn btn-primary">
+                            @if (Model.Product.Id == 0)
+                            {
+                                <span>Create</span>
+                            }
+                            else
+                            {
+                                <span>Update</span>
+                            }
+                        </button>
                     </div>
                     <div class="col-6">
                         <a class="btn btn-secondary" asp-controller="Product" asp-action="Index">Back To List</a>

@@ -159,7 +159,7 @@ namespace BulkyWeb.Areas.Admin.Controllers
                     {
                         file.CopyTo(fileStream);
                     }
-                    ProductVM.Product.ImageUrl = $"images/product/{fileName}";
+                    ProductVM.Product.ImageUrl = @$"\images\product\{fileName}";
 
                     _unitOfWork.Product.Add(ProductVM.Product);
                     _unitOfWork.Save();
