@@ -11,10 +11,12 @@ namespace BulkyWeb.Areas.Admin.Controllers
     {
         //private readonly IProductRepository _db;
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public ProductController(IUnitOfWork db)
+        public ProductController(IUnitOfWork db, IWebHostEnvironment webHostEnvironment)
         {
             _unitOfWork = db;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         public IActionResult Index()
@@ -41,9 +43,42 @@ namespace BulkyWeb.Areas.Admin.Controllers
             return View(ProductVM);
         }
 
+        public IActionResult Upsert(int? Id)
+        {           
+
+            IEnumerable<SelectListItem> CategoryList = _unitOfWork.Category.GetAll().Select(c => new SelectListItem
+            {
+                Text = c.Name,
+                Value = c.Id.ToString(),
+            });
+            //ViewBag.CategoryList = CategoryList;
+
+            ProductVM ProductVM = new ProductVM
+            {
+                CategoryList = CategoryList,
+                Product = new Product()
+            };
+
+            if (Id == null || Id == 0)
+            {
+                // create
+                return View(ProductVM);
+            }
+            else {
+                // update
+                ProductVM.Product = _unitOfWork.Product.Get(c => c.Id == Id);
+                return View(ProductVM);
+            }
+            
+        }
+
         [HttpPost]
-        public IActionResult Create(Product ProductObj)
+        public IActionResult Create(ProductVM ProductVM, IFormFile? file)
         {
+            if (file == null)
+            {
+                    ModelState.AddModelError("ImageUrl", "Please Upload Image for Product.");
+            }
             //if(ProductObj.Name == ProductObj.DisplayOrder.ToString())
             //{
             //    ModelState.AddModelError("Name", "DisplayOrder cannot be same as Name.");
@@ -52,14 +87,94 @@ namespace BulkyWeb.Areas.Admin.Controllers
             //{
             //    ModelState.AddModelError("", "test is an invalid value.");
             //}
+
             if (ModelState.IsValid)
             {
-                _unitOfWork.Product.Add(ProductObj);
-                _unitOfWork.Save();
-                TempData["success"] = "Product created Successfully.";
-                return RedirectToAction("Index");
+                /*
+                 * wwwRoot path
+                 * file != null
+                 * new Name => GuId +extension
+                 * path => images/product
+                 * FileStream => create new file
+                 * file.copyTo(fileStream)
+                 */
+                string wwwRootPath = _webHostEnvironment.WebRootPath;
+                if (file != null) { 
+                    string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName); 
+                    string productPath = Path.Combine(wwwRootPath, "images/product");
+                    using (var fileStream = new FileStream(Path.Combine(productPath, fileName), FileMode.Create))
+                    {
+                        file.CopyTo(fileStream);
+                    }
+                    ProductVM.Product.ImageUrl = $"images/product/{fileName}";
+
+                    _unitOfWork.Product.Add(ProductVM.Product);
+                    _unitOfWork.Save();
+                    TempData["success"] = "Product created Successfully.";
+                    return RedirectToAction("Index");
+                }               
             }
-            return View();
+
+            ProductVM.CategoryList = _unitOfWork.Category.GetAll().Select(c => new SelectListItem
+            {
+                Text = c.Name,
+                Value = c.Id.ToString(),
+            });
+
+            return View(ProductVM);
+        }
+
+        [HttpPost]
+        public IActionResult Upsert(ProductVM ProductVM, IFormFile? file)
+        {
+            if (file == null)
+            {
+                ModelState.AddModelError("ImageUrl", "Please Upload Image for Product.");
+            }
+            //if(ProductObj.Name == ProductObj.DisplayOrder.ToString())
+            //{
+            //    ModelState.AddModelError("Name", "DisplayOrder cannot be same as Name.");
+            //}
+            //if (ProductObj.Name != null && ProductObj.Name.ToLower() == "test") 
+            //{
+            //    ModelState.AddModelError("", "test is an invalid value.");
+            //}
+
+            if (ModelState.IsValid)
+            {
+                /*
+                 * wwwRoot path
+                 * file != null
+                 * new Name => GuId +extension
+                 * path => images/product
+                 * FileStream => create new file
+                 * file.copyTo(fileStream)
+                 */
+                string wwwRootPath = _webHostEnvironment.WebRootPath;
+                if (file != null)
+                {
+                    string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
+                    string productPath = Path.Combine(wwwRootPath, "images/product");
+                    using (var fileStream = new FileStream(Path.Combine(productPath, fileName), FileMode.Create))
+                    {
+                        file.CopyTo(fileStream);
+                    }
+                    ProductVM.Product.ImageUrl = $"images/product/{fileName}";
+
+                    _unitOfWork.Product.Add(ProductVM.Product);
+                    _unitOfWork.Save();
+                    TempData["success"] = "Product created Successfully.";
+                    return RedirectToAction("Index");
+                }
+            }
+
+            ProductVM.CategoryList = _unitOfWork.Category.GetAll().Select(c => new SelectListItem
+            {
+                Text = c.Name,
+                Value = c.Id.ToString(),
+            });
+
+            return View(ProductVM);
         }
 
         public IActionResult Edit(int? Id)
