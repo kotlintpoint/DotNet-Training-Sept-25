@@ -127,10 +127,10 @@ namespace BulkyWeb.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult Upsert(ProductVM ProductVM, IFormFile? file)
         {
-            if (file == null)
-            {
-                ModelState.AddModelError("ImageUrl", "Please Upload Image for Product.");
-            }
+            //if (file == null)
+            //{
+            //    ModelState.AddModelError("ImageUrl", "Please Upload Image for Product.");
+            //}
             //if(ProductObj.Name == ProductObj.DisplayOrder.ToString())
             //{
             //    ModelState.AddModelError("Name", "DisplayOrder cannot be same as Name.");
@@ -154,18 +154,39 @@ namespace BulkyWeb.Areas.Admin.Controllers
                 if (file != null)
                 {
                     string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
-                    string productPath = Path.Combine(wwwRootPath, "images/product");
+                    string productPath = Path.Combine(wwwRootPath, @"images\product");
+
+                    // Update => ImageUrl not null => File Exist => File Delete
+                    if (!string.IsNullOrEmpty(ProductVM.Product.ImageUrl)) { 
+                        var oldImagePath = Path.Combine(wwwRootPath, ProductVM.Product.ImageUrl.TrimStart('\\'));
+                        if (System.IO.File.Exists(oldImagePath)) {
+                            System.IO.File.Delete(oldImagePath);
+                        }
+                    }
+                    // New File Upload continue.
                     using (var fileStream = new FileStream(Path.Combine(productPath, fileName), FileMode.Create))
                     {
                         file.CopyTo(fileStream);
                     }
                     ProductVM.Product.ImageUrl = @$"\images\product\{fileName}";
+                    if (ProductVM.Product.Id == 0)
+                    {
+                        _unitOfWork.Product.Add(ProductVM.Product);
+                        _unitOfWork.Save();
+                        TempData["success"] = "Product created Successfully.";
+                        return RedirectToAction("Index");                        
+                    }
+                }
 
-                    _unitOfWork.Product.Add(ProductVM.Product);
+                // Update
+                if (ProductVM.Product.Id != 0)
+                {
+                    _unitOfWork.Product.Update(ProductVM.Product);
+                    TempData["success"] = "Product updated Successfully.";
                     _unitOfWork.Save();
-                    TempData["success"] = "Product created Successfully.";
                     return RedirectToAction("Index");
                 }
+                
             }
 
             ProductVM.CategoryList = _unitOfWork.Category.GetAll().Select(c => new SelectListItem

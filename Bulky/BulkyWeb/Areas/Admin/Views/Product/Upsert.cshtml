@@ -17,6 +17,7 @@
         </div>
         <div asp-validation-summary="All"></div>
         <input asp-for="@Model.Product.Id" hidden />
+        <input asp-for="@Model.Product.ImageUrl" hidden />
         <div class="row">
             <div class="col-10">
                 <div class="mb-3">
@@ -91,7 +92,9 @@
 
             </div>
             <div class="col-2">
-                <img src="@Model.Product.ImageUrl" width="100%" />
+                <img src="@Model.Product.ImageUrl" 
+                    style="border-radius:5px; border:1px solid #bbb9b9; "
+                       width="100%" />
             </div>
         </div>
     </div>
