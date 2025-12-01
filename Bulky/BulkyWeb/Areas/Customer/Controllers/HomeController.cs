@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using Bulky.DataAccess.Repository;
 using Bulky.Models;
 using DI_Service_Lifetime;
 using Microsoft.AspNetCore.Mvc;
@@ -15,6 +16,7 @@ namespace BulkyWeb.Areas.Customer.Controllers
         private readonly ITransientGuidService _transient2;
         private readonly ISingletonGuidService _singleton1;
         private readonly ISingletonGuidService _singleton2;
+        private readonly IUnitOfWork _unitOfWork;
 
         public HomeController(ILogger<HomeController> logger,
             IScopedGuidService scoped1,
@@ -22,7 +24,8 @@ namespace BulkyWeb.Areas.Customer.Controllers
             ITransientGuidService transient1,
             ITransientGuidService transient2,
             ISingletonGuidService singleton1,
-            ISingletonGuidService singleton2)
+            ISingletonGuidService singleton2,
+            IUnitOfWork unitOfWork)
         {
             _logger = logger;
             _scoped1 = scoped1;
@@ -31,6 +34,7 @@ namespace BulkyWeb.Areas.Customer.Controllers
             _transient2 = transient2;
             _singleton1 = singleton1;
             _singleton2 = singleton2;
+            _unitOfWork = unitOfWork;
         }
 
         public IActionResult Index()
@@ -41,7 +45,13 @@ namespace BulkyWeb.Areas.Customer.Controllers
             _logger.LogInformation($"Transient 2 : {_transient2.GetGuid()}");
             _logger.LogInformation($"Singleton 1 : {_singleton1.GetGuid()}");
             _logger.LogInformation($"Singleton 2 : {_singleton2.GetGuid()}");
-            return View();
+            List<Product> ProductList = _unitOfWork.Product.GetAll(includeProperties: "Category").ToList();
+            return View(ProductList);          
+        }
+        public IActionResult Details(int productId)
+        {
+            Product product = _unitOfWork.Product.Get(p => p.Id == productId, includeProperties: "Category");
+            return View(product);
         }
 
         public IActionResult Privacy()
