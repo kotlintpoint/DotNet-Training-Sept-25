@@ -2,11 +2,13 @@ using Bulky.DataAccess.Repository;
 using BulkyWeb.Data;
 using DI_Service_Lifetime;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddRazorPages();
 builder.Services.AddScoped<IScopedGuidService, ScopedGuidService>();
 builder.Services.AddTransient<ITransientGuidService, TransientGuidService>();
 builder.Services.AddSingleton<ISingletonGuidService, SingletonGuidService>();
@@ -20,6 +22,9 @@ var connectionString =
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
+
+builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ApplicationDbContext>();
+
 
 var app = builder.Build();
 
@@ -35,6 +40,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+app.MapRazorPages();
 
 app.UseAuthorization();
 
