@@ -14,6 +14,7 @@ namespace BulkyWeb.Data
 
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<Company> Companies { get; set; }
 
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
 
@@ -68,6 +69,39 @@ namespace BulkyWeb.Data
                     Price100 = 120,
                     CategoryId = 1,
                     ImageUrl = ""
+                }
+            );
+
+            modelBuilder.Entity<Company>().HasData(
+                new Company
+                {
+                    Id = 1,
+                    Name = "TechNova Solutions",
+                    StreetAddress = "123 Innovation Drive",
+                    City = "Seattle",
+                    State = "WA",
+                    PostalCode = "98101",
+                    PhoneNumber = "206-555-0123"
+                },
+                new Company
+                {
+                    Id = 2,
+                    Name = "GreenLeaf Industries",
+                    StreetAddress = "456 Eco Park Blvd",
+                    City = "Portland",
+                    State = "OR",
+                    PostalCode = "97205",
+                    PhoneNumber = "503-555-0198"
+                },
+                new Company
+                {
+                    Id = 3,
+                    Name = "Skyline Logistics",
+                    StreetAddress = "789 Cargo Way",
+                    City = "Denver",
+                    State = "CO",
+                    PostalCode = "80202",
+                    PhoneNumber = "303-555-0175"
                 }
             );
         }
