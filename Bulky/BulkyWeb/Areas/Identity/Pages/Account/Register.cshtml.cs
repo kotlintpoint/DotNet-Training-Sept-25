@@ -11,7 +11,7 @@ using System.Text.Encodings.Web;
 using System.Threading;
 using System.Threading.Tasks;
 using Bulky.DataAccess.Repository;
-using Bulky.Models.Models;
+using Bulky.Models;
 using Bulky.Utility;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
