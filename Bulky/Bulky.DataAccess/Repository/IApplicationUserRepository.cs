@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 namespace Bulky.DataAccess.Repository
 {
     public interface IApplicationUserRepository : IRepository<ApplicationUser>
-    {
-        void Update(ApplicationUser obj);
+    {        
     }
 }
