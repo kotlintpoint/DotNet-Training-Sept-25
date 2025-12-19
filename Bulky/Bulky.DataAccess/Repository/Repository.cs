@@ -32,8 +32,11 @@ namespace Bulky.DataAccess.Repository
             else {
                 query = _dbSet.AsNoTracking();
             }
-            
-            query = query.Where(filter);
+
+            if (filter != null)
+            {
+                query = query.Where(filter);
+            }
             if (!string.IsNullOrEmpty(includeProperties))
             {
                 foreach (var property in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
@@ -41,12 +44,16 @@ namespace Bulky.DataAccess.Repository
                     query = query.Include(property);
                 }
             }
-            return query.First();
+            return query.FirstOrDefault();
         }
 
         public IEnumerable<T> GetAll(Expression<Func<T, bool>>? filter, string? includeProperties = null)
         {
             IQueryable<T> query = _dbSet;
+            if (filter != null)
+            {
+                query = query.Where(filter);
+            }
             if (!string.IsNullOrEmpty(includeProperties)) {
                 foreach (var property in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
                 {
