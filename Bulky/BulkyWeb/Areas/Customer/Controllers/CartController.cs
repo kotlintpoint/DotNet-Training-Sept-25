@@ -125,13 +125,13 @@ namespace BulkyWeb.Areas.Customer.Controllers
 
             if (ApplicationUser.CompanyId.GetValueOrDefault() == 0) {
                 // Customer
-                ShoppingCartVM.OrderHeader.OrderStatus = SD.Pending;
-                ShoppingCartVM.OrderHeader.PaymentStatus = SD.Pending;
+                ShoppingCartVM.OrderHeader.OrderStatus = SD.StatusPending;
+                ShoppingCartVM.OrderHeader.PaymentStatus = SD.PaymentStatusPending;
             }
             else {
                 // Company
-                ShoppingCartVM.OrderHeader.OrderStatus = SD.Approved;
-                ShoppingCartVM.OrderHeader.PaymentStatus = SD.ApprovedForDelayedPayment;
+                ShoppingCartVM.OrderHeader.OrderStatus = SD.StatusApproved;
+                ShoppingCartVM.OrderHeader.PaymentStatus = SD.PaymentStatusDelayedPayment;
             }
             _unitOfWork.OrderHeader.Add(ShoppingCartVM.OrderHeader);
             _unitOfWork.Save();
@@ -185,14 +185,14 @@ namespace BulkyWeb.Areas.Customer.Controllers
 
         public IActionResult OrderConfirmation(int id) {
             OrderHeader OrderHeader = _unitOfWork.OrderHeader.Get(u => u.Id == id, includeProperties: "ApplicationUser");
-            if (OrderHeader.PaymentStatus != SD.ApprovedForDelayedPayment) { 
+            if (OrderHeader.PaymentStatus != SD.PaymentStatusDelayedPayment) { 
                 // customer
                 var service = new SessionService();
                 Session session = service.Get(OrderHeader.SessionId);
                 if (session.PaymentStatus.ToLower() == "paid") {
 
                     _unitOfWork.OrderHeader.UpdateStripePaymentID(id, session.Id, session.PaymentIntentId);
-                    _unitOfWork.OrderHeader.UpdateStatus(id, SD.Approved, SD.Approved);
+                    _unitOfWork.OrderHeader.UpdateStatus(id, SD.StatusApproved, SD.PaymentStatusApproved);
                     _unitOfWork.Save();
                 }
             }
