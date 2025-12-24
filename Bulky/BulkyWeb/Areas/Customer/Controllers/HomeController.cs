@@ -49,15 +49,15 @@ namespace BulkyWeb.Areas.Customer.Controllers
             _logger.LogInformation($"Singleton 1 : {_singleton1.GetGuid()}");
             _logger.LogInformation($"Singleton 2 : {_singleton2.GetGuid()}");
 
-            var claimIdentity = (ClaimsIdentity)User.Identity;
-            if (claimIdentity.IsAuthenticated) {
-                var userId = claimIdentity.FindFirst(ClaimTypes.NameIdentifier).Value;
-                if (userId != null)
-                {
-                    HttpContext.Session.SetInt32(SD.SessionCart,
-                       _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == userId).Count());
-                }
-            }
+            //var claimIdentity = (ClaimsIdentity)User.Identity;
+            //if (claimIdentity.IsAuthenticated) {
+            //    var userId = claimIdentity.FindFirst(ClaimTypes.NameIdentifier).Value;
+            //    if (userId != null)
+            //    {
+            //        HttpContext.Session.SetInt32(SD.SessionCart,
+            //           _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == userId).Count());
+            //    }
+            //}
             
 
             List<Product> ProductList = _unitOfWork.Product.GetAll(includeProperties: "Category").ToList();
