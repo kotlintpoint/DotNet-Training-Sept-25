@@ -4,6 +4,7 @@ using Bulky.Models.Models;
 using Bulky.Models.ViewModels;
 using Bulky.Utility;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Stripe;
 using Stripe.Checkout;
@@ -16,12 +17,14 @@ namespace BulkyWeb.Areas.Customer.Controllers
     public class CartController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IEmailSender _emailSender;
         [BindProperty]
         public ShoppingCartVM ShoppingCartVM { get; set; }
 
-        public CartController(IUnitOfWork unitOfWork)
+        public CartController(IUnitOfWork unitOfWork, IEmailSender emailSender)
         {
             _unitOfWork = unitOfWork;
+            _emailSender = emailSender;
         }
 
         public IActionResult Index()
@@ -154,8 +157,9 @@ namespace BulkyWeb.Areas.Customer.Controllers
 
             if (ApplicationUser.CompanyId.GetValueOrDefault() == 0) {
                 // customer 
-                // stripe payment 
-                var domain = "https://localhost:7001";
+                // stripe payment                 
+                //var domain = "https://localhost:7001";
+                var domain = Request.Scheme + "://" + Request.Host.Value;
                 var options = new SessionCreateOptions
                 {
                     SuccessUrl = domain + $"/customer/cart/OrderConfirmation?id={ShoppingCartVM.OrderHeader.Id}",
@@ -200,6 +204,10 @@ namespace BulkyWeb.Areas.Customer.Controllers
                     _unitOfWork.Save();
                 }
             }
+
+            _emailSender.SendEmailAsync(OrderHeader.ApplicationUser.Email, "New Order - Bulky Book", $"<h1>New Order Created {OrderHeader.Id}</h1>");
+            //HttpContext.Session.Remove(SD.SessionCart);
+            HttpContext.Session.Clear();
 
             // remove data from cart
             List<ShoppingCart> ShoppingCarts = _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == OrderHeader.ApplicationUserId).ToList();
