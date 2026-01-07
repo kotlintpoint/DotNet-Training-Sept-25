@@ -1,13 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36603.0 d17.14
+VisualStudioVersion = 17.14.36603.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestfulAPILearning", "RestfulAPILearning\RestfulAPILearning.csproj", "{F75E3EE7-D407-4212-A2B9-BE9132D5FB81}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Learning.Data", "Learning.Data\Learning.Data.csproj", "{64DF170B-3640-4A3D-9C50-ADCDA73C7EBF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Learning.Models", "Learning.Models\Learning.Models.csproj", "{7B6844AD-5B80-4398-96A1-3DE5DCB1650D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{8611AE4E-314A-4D91-9620-D6ABA5E45071}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{7B6844AD-5B80-4398-96A1-3DE5DCB1650D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7B6844AD-5B80-4398-96A1-3DE5DCB1650D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7B6844AD-5B80-4398-96A1-3DE5DCB1650D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8611AE4E-314A-4D91-9620-D6ABA5E45071}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8611AE4E-314A-4D91-9620-D6ABA5E45071}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8611AE4E-314A-4D91-9620-D6ABA5E45071}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8611AE4E-314A-4D91-9620-D6ABA5E45071}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
