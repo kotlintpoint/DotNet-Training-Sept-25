@@ -2,6 +2,7 @@
 using Learning.Data;
 using Learning.Models;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -16,22 +17,32 @@ namespace RestfulAPILearning.Controllers
         //    _mediator = mediator;
         //}
 
+        //[Authorize]
         [HttpGet]
         public async Task<ActionResult<List<Activity>>> GetActivities() {
-            return await Mediator.Send(new List.Query());
+            return HandleResult(await Mediator.Send(new List.Query()));
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<Activity>> GetActivity(Guid id)
         {
-            return await Mediator.Send(new Details.Query { Id = id });
+            /*var result = await Mediator.Send(new Details.Query { Id = id });
+            if (result.IsSuccess && result.Value != null) {
+                return Ok(result.Value);
+            }
+            if (result.IsSuccess && result.Value == null) {
+                return NotFound();
+            }
+            return BadRequest(result.Error);*/
+
+            return HandleResult(await Mediator.Send(new Details.Query { Id = id }));
+
         }
 
         [HttpPost]
         public async Task<ActionResult> CreateActivity(Activity Activity)
         {
-            await Mediator.Send(new Create.Command { Activity = Activity});
-            return Ok();
+            return HandleResult(await Mediator.Send(new Create.Command { Activity = Activity}));            
         }
 
         [HttpPut("{id}")]

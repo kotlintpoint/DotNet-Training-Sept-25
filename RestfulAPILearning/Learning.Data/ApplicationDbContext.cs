@@ -1,9 +1,10 @@
 ﻿using Learning.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Learning.Data
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : IdentityDbContext<AppUser>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) 
         { 
@@ -12,7 +13,7 @@ namespace Learning.Data
         public DbSet<Activity> Activities { get; set; }
         
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        /*protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
@@ -59,6 +60,6 @@ namespace Learning.Data
                  }
              );
 
-        }
+        }*/
     }
 }

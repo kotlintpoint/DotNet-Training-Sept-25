@@ -26,7 +26,10 @@ namespace Application.Activities
             }
             public async Task Handle(Command request, CancellationToken cancellationToken)
             {
-                var activity = await _db.Activities.FindAsync(request.Id);               
+                var activity = await _db.Activities.FindAsync(request.Id);
+                if (activity == null) {
+                    throw new Exception("Activity not found");
+                }
                 _db.Remove(activity);
                 _db.SaveChanges();
                 return;
